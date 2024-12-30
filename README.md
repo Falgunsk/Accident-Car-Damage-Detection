@@ -53,7 +53,7 @@ The Vehicle Damage Detection System allows users to upload images of cars to det
 ### Frontend:
 - HTML
 - CSS
-- 
+  
 ### Libraries:
 - Flask ( Web Framework)
 - Pandas (Data Analysis)
