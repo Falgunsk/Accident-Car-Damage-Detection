@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+    <header>
+        <h1>User Profile</h1>
+    </header>
+    
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="profile-info">
+            <img src="data:image/jpeg/jpg/png;base64,{{ profile_pic }}" alt="Profile Picture" class="profile-pic">
+            <h2>Profile Details</h2>
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Phone:</strong> {{ phone }}</p>
+            <p><strong>Address:</strong> {{ address }}</p>
+            <p><strong>City:</strong> {{ city }}</p>
+            <p><strong>State:</strong> {{ state }}</p>
+            <p><strong>Zip Code:</strong> {{ zip_code }}</p>
+            <p><strong>Country:</strong> {{ country }}</p>
+            <p><strong>Car Brand:</strong> {{ car_brand }}</p>
+            <p><strong>Car Model:</strong> {{ car_model }}</p>
+            <p><strong>Registered On:</strong> {{ registered_on }}</p>
+        </div>
+        
+        <div class="profile-action">
+            <a href="{{ url_for('update_account') }}">Update Account</a>
+            <a href="{{ url_for('change_password') }}">Change Password</a>
+            <a href="{{ url_for('delete_account') }}">Delete Account</a>
+        </div>
+    </main>
+</body>
+</html>
+{% endblock %}

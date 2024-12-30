@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Estimate Damage - Car Damage Estimator{% endblock %}
+
+{% block content %}
+<section class="predict">
+    <h1>Estimate Car Damage</h1>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('predict') }}" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <!-- Car Brand Selection -->
+        <div class="form-group">
+            {{ form.car_brand.label }}
+            {{ form.car_brand(class="form-control", id="car_brand") }}
+        </div>
+
+        <!-- Button to submit the selected car brand and populate the car model options -->
+        <div class="form-group">
+            {{ form.submit_car_brand(class="btn btn-primary", id="submit_car_brand") }}
+        </div>
+
+        <!-- Conditionally render Car Model and Upload fields only if brand is selected -->
+        {% if form.car_model.choices %}
+        <div id="car_model_section">
+            <div class="form-group">
+                {{ form.car_model.label }}
+                {{ form.car_model(class="form-control", id="car_model") }}
+            </div>
+
+            <!-- Image Upload -->
+            <div class="form-group">
+                {{ form.upload_image.label }}
+                {{ form.upload_image(class="form-control-file", id="upload_image") }}
+            </div>
+
+            <!-- Image Preview -->
+            <div class="form-group" id="image-preview" style="display: none;">
+                <label for="imagePreview">Image Preview:</label>
+                <img id="imagePreview" src="#" alt="Image Preview" style="max-width: 100%; height: auto;" />
+            </div>
+
+            <!-- Final Submit Button -->
+            <div class="form-group">
+                {{ form.submit(class="btn btn-success") }}
+            </div>
+        </div>
+        {% endif %}
+    </form>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carBrandSelect = document.getElementById('car_brand');
+        const submitCarBrandButton = document.getElementById('submit_car_brand');
+        const carModelSection = document.getElementById('car_model_section');
+
+        carBrandSelect.addEventListener('change', function() {
+            // Automatically resubmit form to update model list on brand change
+            submitCarBrandButton.click();
+        });
+    });
+</script>
+
+<script>
+    // Handle real-time image preview
+    document.getElementById('upload_image').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = e.target.result;
+                document.getElementById('image-preview').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Script for handling drag-and-drop file upload
+    function dropHandler(ev) {
+        ev.preventDefault();
+        if (ev.dataTransfer.items) {
+            [...ev.dataTransfer.items].forEach((item, i) => {
+                if (item.kind === 'file') {
+                    const file = item.getAsFile();
+                    const inputElement = document.querySelector('input[name="upload_image"]');
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    inputElement.files = dataTransfer.files;
+
+                    // Preview the file
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const imagePreview = document.getElementById('imagePreview');
+                        imagePreview.src = e.target.result;
+                        document.getElementById('image-preview').style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    }
+
+    function dragOverHandler(ev) {
+        ev.preventDefault();
+    }
+</script>
+{% endblock %}

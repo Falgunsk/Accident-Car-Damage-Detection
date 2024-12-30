@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Update Car Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Add/Update Car Data</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" action="{{ url_for('admin_add_update_car') }}">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.car_brand.label }}<br>
+                {{ form.car_brand(size=32, class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.car_model.label }}<br>
+                {{ form.car_model(size=32, class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.car_part.label }}<br>
+                {{ form.car_part(class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.car_part_price.label }}<br>
+                {{ form.car_part_price(size=32, class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class_="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+</body>
+</html>

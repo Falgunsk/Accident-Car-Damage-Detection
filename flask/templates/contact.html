@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Car Damage Estimator{% endblock %}
+
+{% block content %}
+<section class="contact">
+    <h1>Contact Us</h1>
+    <form method="POST" action="{{ url_for('contact') }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.subject.label }}
+            {{ form.subject(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.message.label }}
+            {{ form.message(class="form-control") }}
+        </div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Damage Estimate Result - Car Damage Estimator{% endblock %}
+
+{% block content %}
+<style>
+    .result {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+    }
+
+    .result h1, .result h2, .result h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .result-images {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+
+    .result ul {
+        color: black;
+        list-style-type: none;
+        padding: 0;
+    }
+    .original-image, .detected-image {
+        width: 300px;
+        height: auto;
+        border: 1px solid #ccc;
+    }
+
+    .result-details {
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        display: block;
+        width: 150px;
+        margin: 0 auto;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+
+<section class="result">
+    <h1>Damage Estimate Result</h1>
+    <div class="result-images">
+        <img src="data:image/jpeg;base64,{{ original_img }}" alt="Original Image" class="original-image">
+        <img src="data:image/jpeg;base64,{{ out_img }}" alt="Detected Damage" class="detected-image">
+    </div>
+    <div class="result-details">
+        <h2>Detected Objects</h2>
+        <ul>
+            {% for object, count in detected_objects.items() %}
+                <li>{{ object }}: {{ count }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Estimated Prices</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Part</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for _, row in estimated_prices.iterrows() %}
+                    <tr>
+                        <td>{{ row['Part'] }}</td>
+                        <td>{{ row['Quantity'] }}</td>
+                        <td>{{ row['Rate'] }}</td>
+                        <td>{{ row['Total'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Total Estimated Price: ₹{{ total_price }}</h3>
+    </div>
+    <button onclick="window.print()" class="btn">Print Result</button>
+</section>
+{% endblock %}

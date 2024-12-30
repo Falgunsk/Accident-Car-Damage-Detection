@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Car Damage Estimator{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <h1>Welcome, {{ current_user.name }}!</h1>
+    <div class="dashboard-action">
+        <a href="{{ url_for('predict') }}" class="btn btn-primary">Estimate Damage</a>
+        <a href="{{ url_for('profile') }}" class="btn btn-secondary">View Profile</a>
+        <a href="{{ url_for('settings') }}" class="btn btn-secondary">Settings</a>
+    </div>
+    <div class="dashboard-summary">
+        <h2>Your Recent Estimates</h2>
+        <!-- Add logic to display recent estimates -->
+        <p>No recent estimates found.</p>
+    </div>
+</section>
+{% endblock %}

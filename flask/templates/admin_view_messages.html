@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin View Messages</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .message.admin {
+            background-color: #d1ecf1;
+            text-align: right;
+        }
+        .message.user {
+            background-color: #f8d7da;
+            text-align: left;
+        }
+        .message .meta {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="my-4">Admin View Messages</h2>
+        <div class="chat-container">
+            {% for message in messages.itertuples() %}
+                <div class="message {% if message.name == 'Admin' %}admin{% else %}user{% endif %}">
+                    <div class="meta">
+                        <strong>{{ message.name }}</strong> - {{ message.date }}
+                    </div>
+                    <div class="content">
+                        <p>{{ message.message }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+{% for message in messages.itertuples() %}
+    <div class="message user">
+        <div class="meta">
+            <strong>{{ message.name }}</strong> - {{ message.date }}
+        </div>
+        <div class="content">
+            <p><strong>Subject:</strong> {{ message.subject }}</p>
+            <p>{{ message.message }}</p>
+        </div>
+    </div>
+{% endfor %}
+{% for message in messages.itertuples() %}
+    <div class="message user">
+        <div class="meta">
+            <strong>{{ message.name }}</strong> - {{ message.date }}
+        </div>
+        <div class="content">
+            <p><strong>Subject:</strong> {{ message.subject }}</p>
+            <p>{{ message.message }}</p>
+        </div>
+    </div>
+{% endfor %}

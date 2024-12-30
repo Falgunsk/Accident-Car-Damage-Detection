@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <img src="/static/home_car.webp" alt="Crashed Car">
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <h1>Accident Car Damage Detection & Repair Cost Estimation</h1>
+        <p>Effortlessly identify vehicle damage and get instant repair cost estimates.</p>
+    </div>
+</div>
+
+<div class="features" id="features">
+    <div class="feature-box">
+        <i class="fas fa-camera-retro"></i>
+        <h3>Smart Damage Detection</h3>
+        <p>Use AI to instantly detect vehicle damage from uploaded images.</p>
+    </div>
+    <div class="feature-box">
+        <i class="fas fa-wallet"></i>
+        <h3>Accurate Cost Estimation</h3>
+        <p>Receive reliable and precise repair cost estimates in seconds.</p>
+    </div>
+    <div class="feature-box">
+        <i class="fas fa-handshake"></i>
+        <h3>Insurance Integration</h3>
+        <p>Seamlessly connect with insurance providers for faster claims.</p>
+    </div>
+</div>
+
+<div class="how-it-works-container" id="how-it-works">
+    <div class="how-it-works-image"> 
+        <img src="/static/how-it-works.jpg" alt="How It Works Image">
+    </div>
+    <div class="how-it-works-content">
+        <h2>How It Works</h2>
+        <p>Our AI-based system makes accident damage detection simple:</p>
+        <ol>
+            <li>Upload a clear photo of the damaged vehicle.</li>
+            <li>Our system detects damages and estimates repair costs.</li>
+            <li>Optionally, integrate with insurance providers for a seamless process.</li>
+        </ol>
+    </div>
+</div>
+
+<!-- About Us Section -->
+<div class="about" id="about">
+    <div class="about-left">
+        <i class="fas fa-info-circle"></i>
+        <h2>About Us</h2>
+        <p>Accident Damage Detection is a cutting-edge platform designed to revolutionize the way vehicle damage is assessed and repair costs are estimated. Powered by AI, we aim to simplify and streamline the entire process, ensuring accuracy, efficiency, and reliability.</p>
+        <p>Our platform uses advanced image recognition technology to analyze vehicle damage quickly, providing accurate repair cost estimates within moments. We strive to provide an easy and intuitive interface for users, enabling seamless integration with insurance providers and helping users save time and money on their claims.</p>
+    </div>
+    <div class="about-right">
+        <img src="/static/about.jpg" alt="About Us Image" style="width: 80%; max-width: 500px; border-radius: 10px;">
+    </div>
+</div>
+{% endblock %}

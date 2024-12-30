@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Car Damage Estimator{% endblock %}
+
+{% block content %}
+<section class="register">
+    <h1>Register</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST" action="{{ url_for('register') }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.confirm_password.label }}
+            {{ form.confirm_password(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.phone.label }}
+            {{ form.phone(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.address.label }}
+            {{ form.address(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.city.label }}
+            {{ form.city(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.state.label }}
+            {{ form.state(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.zip_code.label }}
+            {{ form.zip_code(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.country.label }}
+            {{ form.country(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.car_brand.label }}
+            {{ form.car_brand(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.car_model.label }}
+            {{ form.car_model(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+    <p class="form-footer">
+        Already have an account? <a href="{{ url_for('login') }}">Login here</a>
+    </p>
+</section>
+{% endblock %}
