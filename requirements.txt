@@ -9,5 +9,6 @@ pandas==2.2.3
 Pillow==11.0.0
 tqdm==4.66.5
 ultralytics==8.2.91
+mysql==0.0.3
 mysql-connector-python==8.1.0
 regex==2024.7.24
