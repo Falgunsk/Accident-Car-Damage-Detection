@@ -87,3 +87,26 @@ CREATE TABLE `user_data` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- Dumping data for table `user_data`
+
+LOCK TABLES `user_data` WRITE;
+/*!40000 ALTER TABLE `user_data` DISABLE KEYS */;
+INSERT INTO `user_data` VALUES ('adm7890922','Admin','admin@admin.com','scrypt:32768:8:1$3XD5RvbzlcSi5raE$b4d99e412430b914c2ff50ff5c57473a6e0f1da3e4325ff948efae06051a67880c90f26ebe59edcd263c7320054174a3d9086dacd2d42efbc54c5190a5ebe011','1234567890','Admin Address','Admin City','Admin State',123456,'Admin Country','2024-09-20 07:20:43','Admin Car Brand','Admin Car Model',1,NULL);
+/*
+ * This script contains the password for the admin user.
+ * The password for the admin is: Admin@123
+ */
+
+/*!40000 ALTER TABLE `user_data` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
